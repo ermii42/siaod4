@@ -39,4 +39,7 @@ int main() {
     A.Tree(n, A.GetDuk());
     A.Vyvod(A.GetDuk(), 0);
     cout << endl << A.getDept(A.GetDuk());
+    node* nd;
+    nd = A.maxNode(A.GetDuk());
+    cout<<endl<<nd->Key;
 }
