@@ -5,6 +5,7 @@
 using namespace std;
 
 // 8 9 11 15 19 20 21 7 3 2 1 5 6 4 13 14 10 12 17 16 18
+// 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21
 
 /*
 Вид дерева: идеально сбалансированное из n узлов (не AVL).
@@ -42,4 +43,6 @@ int main() {
     node* nd;
     nd = A.maxNode(A.GetDuk());
     cout<<endl<<nd->Key;
+    cout << endl << A.getMinValue(A.GetDuk());
+    cout << endl << A.getMaxValue(A.GetDuk());
 }

@@ -20,16 +20,13 @@ private:
     node *duk; //Корень дерева.
 public:
     TREE() { duk = NULL; }
-
     node **GetDuk() { return &duk; }
-
     void *Tree(int, node **);
-
     void Vyvod(node **, int);
-
     int getDept(node **);
-
     node *maxNode(node **);
+    int getMaxValue(node **);
+    int getMinValue(node **);
 };
 
 void *TREE::Tree(int n, node **p)
@@ -92,17 +89,13 @@ node *TREE::maxNode(node **w) {
         for (int i = 0; i < vec1.size(); i++) {
             if (vec1[i]->Left != NULL) {
                 vec2.push_back(vec1[i]->Left);
-                if (vec1[i]->Left->Key > max) {
-                    max = vec1[i]->Left->Key;
-                    result = vec1[i]->Left;
-                }
             }
             if (vec1[i]->Right != NULL) {
                 vec2.push_back(vec1[i]->Right);
-                if (vec1[i]->Right->Key > max) {
-                    max = vec1[i]->Right->Key;
-                    result = vec1[i]->Right;
-                }
+            }
+            if (vec1[i]->Key > max) {
+                max = vec1[i]->Key;
+                result = vec1[i];
             }
         }
         vec1 = vec2;
@@ -110,6 +103,16 @@ node *TREE::maxNode(node **w) {
         k++;
     }
     return result;
+}
+
+int TREE::getMaxValue(node **w) {
+    if (*w == NULL) return 0;
+    return max(max(getMaxValue(&(**w).Left), getMaxValue(&(**w).Right)), (**w).Key);
+}
+
+int TREE::getMinValue(node **w) {
+    if (*w == NULL) return 10000;
+    return min(min(getMinValue(&(**w).Left), getMinValue(&(**w).Right)), (**w).Key);
 }
 
 #endif //INC_4_BINARYTREE_H
